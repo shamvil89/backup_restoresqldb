@@ -22,7 +22,7 @@ if (@copy_only = 1)
 if @backuptype  not in (1,2,3,4)
 	begin
 	set @backuptype = 1
-	print 'bad parameter input upgrading backuptype to full'
+	print 'bad parameter input upgrading backuptype to full, promoting to full backup'
 	end
 set @recmod = (select recovery_model from sys.databases where name = @db_name)
 if (@recmod = 3 and @backuptype = 3)
@@ -48,7 +48,7 @@ else
 		set @sql = (select  case when @backuptype = 1 then   ('backup database '+ @db_name + ' to disk = ''' + @path + @filename +''' with stats =5') -- full backup
 			 when @backuptype = 2 then  ('backup database '+ @db_name + ' to disk = ''' + @path + @filename +''' with DIFFERENTIAL, stats =5') -- differential backup
 			 when @backuptype = 3 then  ('backup LOG  '+ @db_name + ' to disk = ''' + @path + @filename +''' with stats =5') -- log backup
-			 when @backuptype = 4 then  ('backup database '+ @db_name + ' to disk = ''' + @path + @filename +''' with copy_only ,stats =5')
+			 when @backuptype = 4 then  ('backup database '+ @db_name + ' to disk = ''' + @path + @filename +''' with copy_only ,stats =5') -- copy-only backup
 			 ELSE
 				 'full' -- bad input will escalate backup to full
 	end)
