@@ -36,3 +36,4 @@ This repository is a combination of two stored procedures that are designed for 
         restoration 'testdb', @tail_log = 1, @tail_log_path ='x:\backups\testdb\'
         
       
+read Blog - https://shamvilkazmi.wordpress.com/2020/08/15/sql-backup-restore-made-easier/
