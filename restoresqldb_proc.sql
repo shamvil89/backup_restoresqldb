@@ -2,8 +2,10 @@
 	 @dbname nvarchar(50),
 	 @script tinyint = 1,
 	 @copy_only tinyint = 0,
-	 @tail_log tinyint = 0
- as
+	 @tail_log tinyint = 0,
+	 @tail_log_path nvarchar (500) = 'c:\temp\'
+	 as
+
  set nocount on
  -- create a table variable
  declare  @backupset table 
@@ -44,11 +46,11 @@
 				null,
 				'b', 
 				null, 
-			    'BACKUP LOG '+ @dbname+' TO  DISK = N''C:\temp\'+@dbname+'.bak'' WITH NOFORMAT, NOINIT,  NOSKIP, NOREWIND, NOUNLOAD,  NORECOVERY ,  STATS = 5' as [script]
+			    'BACKUP LOG '+ @dbname+' TO  DISK = '''+@tail_log_path+@dbname+'.bak'' WITH NOFORMAT, NOINIT,  NOSKIP, NOREWIND, NOUNLOAD,  NORECOVERY ,  STATS = 5' as [script]
 	 end
  else
 	 begin
-	 print 'truncating tail_log'
+	 	 print 'truncating tail_log'
 	 end
  if (@copy_only = 0)
 	 begin
@@ -170,3 +172,4 @@ if (@script = 1)
 
 
 
+	
