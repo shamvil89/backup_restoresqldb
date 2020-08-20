@@ -1,3 +1,12 @@
+# sp_dbundo
+
+Generic syntax
+msdb..sp_dbundo 'database_name' <-- this will build script to restore the database to how it was 15 minutes before
+to tell a specific time, use following
+msdb..sp_dbundo 'database_name' , @stopat = 'DateTime of your choice'
+
+
+
 # backup_restoresqldb
 This repository is a combination of two stored procedures that are designed for taking backup of Microsoft SQL databases (On-premise) and create a restore script respectively
 
