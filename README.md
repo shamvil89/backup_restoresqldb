@@ -3,7 +3,10 @@
 Generic syntax <br>
 msdb..sp_dbundo 'database_name' <-- this will build script to restore the database to how it was 15 minutes before <br><br>
 to tell a specific time, use following <br>
-msdb..sp_dbundo 'database_name' , @stopat = 'DateTime of your choice'<br>
+msdb..sp_dbundo 'database_name' , @stopat = 'DateTime of your choice'<br><br>
+
+view this blog for how to use - <br>
+https://shamvilkazmi.wordpress.com/2020/08/20/sp_dbundo/
 
 
 
